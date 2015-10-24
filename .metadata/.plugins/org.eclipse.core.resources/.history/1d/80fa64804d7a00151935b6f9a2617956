@@ -1,0 +1,90 @@
+package Enteties;
+
+import java.util.ArrayList;
+
+import HomeExam.GUI;
+import Items.Item;
+import Items.Key;
+import Items.Potion;
+import Items.Weapon;
+
+public class Player extends Entity{
+	
+	private ArrayList<Item> inventory;
+	private int maxInventory;
+	private Potion potion;
+	private Key key;
+
+	public Player(int health, int attackDamage, String name) {
+		super(health, attackDamage, name);
+		this.maxInventory = 10;
+		inventory = new ArrayList<Item>() ;
+	}
+
+	public boolean pickupItem(Item item) {
+		if(item instanceof Weapon && this.weapon == null){
+			this.weapon = (Weapon) item;
+			return true;
+		}
+		else if(item instanceof Potion && this.potion == null){
+			this.potion = (Potion) item;
+			return true;
+		}
+		else if(item instanceof Key && this.key == null){
+			this.key = (Key) item;
+			return true;
+		}
+		else if (item != null){
+			if (inventory.size() < maxInventory){
+				inventory.add(item);
+				return true;
+			}
+			return false;
+		}return false;
+	}
+
+	public Potion getPotion() {
+		return this.potion;
+	}
+
+	public boolean hasPotion() {
+		if(this.potion != null){
+			return true;
+		}
+		return false;
+	}
+
+	public boolean missingHealth() {
+		if(this.health < this.maxHealth){
+			return true;
+		}
+		return false;
+	}
+
+	public void drink() {
+		this.potion.drink(this);
+		GUI.alert(this.name +" used " + this.potion.getName());
+		if(this.potion.empty()){
+			this.potion = null;
+		}
+		
+	}
+
+	public boolean hasKey() {
+		if(this.key != null){
+			return true;
+		}
+		return false;
+	}
+
+	public Key getKey() {
+		return this.key;
+	}
+
+	public ArrayList<Item> getInventory() {
+		return this.inventory;
+	}
+	
+	
+
+}

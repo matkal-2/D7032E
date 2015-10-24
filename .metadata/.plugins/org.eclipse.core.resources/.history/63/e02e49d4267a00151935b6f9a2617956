@@ -1,0 +1,17 @@
+package Items;
+
+import Enteties.Player;
+
+public class Potion extends Item {
+	private int usages, lifeRestore;
+	public Potion(String itemDescription, int usages, int lifeRestore) {
+		super(itemDescription);
+		this.usages = usages;
+		this.lifeRestore = lifeRestore;
+	}
+	
+	public void drink(Player player){
+		player.takeHealing(lifeRestore);
+	}
+	
+}

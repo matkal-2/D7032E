@@ -1,0 +1,18 @@
+package Enteties;
+
+import Items.Item;
+
+public class Monster extends Entity{
+	private String taunt;
+	private Item loot;
+	
+	public Monster(int health, int attackDamage, String name, String taunt) {
+		super(health, attackDamage, name);
+		this.taunt = taunt;
+	}
+
+	public String getTaunt() {
+		return this.taunt;
+	}
+
+}

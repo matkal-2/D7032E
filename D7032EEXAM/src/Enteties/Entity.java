@@ -1,27 +1,63 @@
 package Enteties;
 
+import HomeExam.GUI;
+import Items.Potion;
+import Items.Weapon;
+
 public class Entity {
-	private int health, attackDamage;
-	public Entity(int health, int attackDamage){
-		this.health = health;
+	protected int health;
+	protected int maxHealth;
+	private int attackDamage;
+	protected Weapon weapon;
+	private boolean isAlive;
+	protected String name;
+	
+	public Entity(int health, int attackDamage, String name){
+		this.maxHealth = this.health = health;
 		this.attackDamage = attackDamage;
+		isAlive = true;
+		this.name = name;
 	}
 	
-	public boolean takeDamage(int damage){
+	public void takeDamage(int damage){
 		this.health -= damage;
-		if (this.health < 0){
+		if (this.health < 1){
 			this.died();
-			return false;
 		}
-		return true;
+	}
+	
+	public void takeHealing(int healing) {
+		this.health += healing;
+		if(this.health > this.maxHealth){
+			this.health = this.maxHealth;
+		}
 	}
 	
 	private void died() {
-		// TODO Auto-generated method stub
+		this.isAlive = false;
 		
 	}
 
-	public boolean giveDamage(Entity entetie){
-		return entetie.takeDamage(this.attackDamage);
+	public void giveDamage(Entity entity){
+		int damage = this.attackDamage;
+		if(this.weapon != null){
+			damage += this.weapon.getWeaponDamage();
+		}
+		GUI.alert(this.name + " dealt " + damage + " damage to " + entity.name);
+		entity.takeDamage(damage);
 	}
+
+	public int getHealth() {
+		return this.health;
+	}
+
+	public boolean isAlive() {
+		return this.isAlive;
+	}
+	
+	public String getName(){
+		return this.name;
+	}
+
+	
 }

@@ -1,0 +1,62 @@
+package Enteties;
+
+import HomeExam.GUI;
+import Items.Potion;
+import Items.Weapon;
+
+public class Entity {
+	private int health, maxHealth, attackDamage;
+	protected Weapon weapon;
+	protected Potion potion;
+	private boolean isAlive;
+	private String name;
+	
+	public Entity(int health, int attackDamage, String name){
+		this.maxHealth = this.health = health;
+		this.attackDamage = attackDamage;
+		isAlive = true;
+		this.name = name;
+	}
+	
+	public void takeDamage(int damage){
+		this.health -= damage;
+		if (this.health < 0){
+			this.died();
+		}
+	}
+	
+	public void takeHealing(int healing) {
+		this.health += healing;
+		if(this.health > this.maxHealth){
+			this.health = this.maxHealth;
+		}
+	}
+	
+	private void died() {
+		this.isAlive = false;
+		
+	}
+
+	public void giveDamage(Entity entity){
+		int damage = this.attackDamage;
+		if(this.weapon != null){
+			damage += this.weapon.getWeaponDamage();
+		}
+		GUI.alert(this.name + " dealt " + damage + " damage to " + entity.name);
+		entity.takeDamage(damage);
+	}
+
+	public int getHealth() {
+		return this.health;
+	}
+
+	public boolean isAlive() {
+		return this.isAlive;
+	}
+	
+	public String getName(){
+		return this.name;
+	}
+
+	
+}

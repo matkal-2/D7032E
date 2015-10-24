@@ -1,0 +1,50 @@
+package HomeExam;
+
+
+public class GUI{
+	
+
+	public GUI(){
+		
+	}
+	
+
+	
+	public static void drawRoom(){
+		
+		// Moved to a new room
+		if(The_Game.activeRoom != The_Game.previousRoom){
+			if(The_Game.activeRoom.roomDescription != ""){
+				System.out.println(The_Game.activeRoom.roomDescription);
+			}
+			if(The_Game.activeRoom.hasItem()){
+				System.out.println(The_Game.activeRoom.getItem().getItemDescription());
+			}
+		}
+		
+		// Failed an action
+		if(The_Game.failedAction){
+			System.out.println("You stumble and fall");
+			
+			The_Game.failedAction = false;
+		}
+		
+		// Give player options
+		if(The_Game.activeRoom.getOptions() != ""){
+			System.out.println(The_Game.activeRoom.getOptions());
+		}
+		
+		if(The_Game.player.hasPotion()){
+			System.out.println(The_Game.player.getPotion().getName());
+		}
+		
+	}
+
+
+
+	public static void alert(String alert) {
+		System.out.println(alert);
+		
+	}
+	
+}

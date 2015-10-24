@@ -1,0 +1,58 @@
+package HomeExam;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+public class UserInput {
+	static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+	public static String userInput() throws Exception {
+		return bufferedReader.readLine();
+	}
+	
+	public static void awaitAction() throws Exception{
+		String choice = bufferedReader.readLine();
+		switch(choice){
+		case "w":
+			if(The_Game.activeRoom.getRoom(0) != null && The_Game.activeRoom.getLock(0) == 0)The_Game.move(The_Game.activeRoom.getRoom(0));
+			break;
+		case "n":
+			if(The_Game.activeRoom.getRoom(1) != null && The_Game.activeRoom.getLock(1) == 0)The_Game.move(The_Game.activeRoom.getRoom(1));
+			break;
+		case "e":
+			if(The_Game.activeRoom.getRoom(2) != null && The_Game.activeRoom.getLock(2) == 0)The_Game.move(The_Game.activeRoom.getRoom(2));
+			break;
+		case "s":
+			if(The_Game.activeRoom.getRoom(3) != null && The_Game.activeRoom.getLock(3) == 0)The_Game.move(The_Game.activeRoom.getRoom(3));
+			break;
+		case "p":
+			if(The_Game.activeRoom.getItem() != null){
+				if(The_Game.pickUpItem(The_Game.activeRoom.getItem())){
+					The_Game.activeRoom.removeItem();
+				}
+			}
+			The_Game.move(The_Game.activeRoom);
+			break;
+		case "d":
+			if(The_Game.player.hasPotion()){
+				if(The_Game.player.missingHealth()){
+					The_Game.player.drink();
+				}
+			}
+			break;
+		case "k":
+			if(The_Game.player.hasPotion()){
+				if(The_Game.player.missingHealth()){
+					The_Game.player.drink();
+				}
+			}
+			break;
+		default:
+			The_Game.failedAction = true;
+			The_Game.move(The_Game.activeRoom);
+			break;
+		}
+	}
+
+}

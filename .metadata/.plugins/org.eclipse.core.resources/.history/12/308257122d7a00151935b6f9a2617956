@@ -1,0 +1,52 @@
+package Enteties;
+
+import Items.Potion;
+import Items.Weapon;
+
+public class Entity {
+	private int health, maxHealth, attackDamage;
+	private Weapon weapon;
+	private Potion potion;
+	private boolean isAlive;
+	
+	public Entity(int health, int attackDamage){
+		this.maxHealth = this.health = health;
+		this.attackDamage = attackDamage;
+		isAlive = true;
+	}
+	
+	public void takeDamage(int damage){
+		this.health -= damage;
+		if (this.health < 0){
+			this.died();
+		}
+	}
+	
+	public void takeHealing(int healing) {
+		this.health += healing;
+		if(this.health > this.maxHealth){
+			this.health = this.maxHealth;
+		}
+	}
+	
+	private void died() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void giveDamage(Entity entity){
+		int damage = this.attackDamage;
+		if(this.weapon != null){
+			damage += this.weapon.getWeaponDamage();
+		}
+		entity.takeDamage(damage);
+	}
+
+	public int getHealth() {
+		return this.health;
+	}
+
+	public boolean isAlive() {
+		return this.isAlive;
+	}
+}

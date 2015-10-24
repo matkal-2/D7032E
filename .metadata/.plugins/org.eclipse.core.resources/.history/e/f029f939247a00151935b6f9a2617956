@@ -1,0 +1,15 @@
+package Items;
+
+import Enteties.Player;
+
+public class Potion {
+	private int usages, lifeRestore;
+	public Potion() {
+		
+	}
+	
+	public void drink(Player player){
+		player.takeDamage(-lifeRestore);
+	}
+	
+}

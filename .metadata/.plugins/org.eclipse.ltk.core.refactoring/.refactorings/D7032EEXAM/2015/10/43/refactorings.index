@@ -1,0 +1,7 @@
+1445668596703	Move compilation units
+1445668626690	Move compilation unit
+1445669935504	Rename field 'roomMessage'
+1445669952155	Rename local variable 'message'
+1445675865048	Rename method 'drawGUI'
+1445678126251	Rename method 'getMoveOptions'
+1445687823352	Delete element

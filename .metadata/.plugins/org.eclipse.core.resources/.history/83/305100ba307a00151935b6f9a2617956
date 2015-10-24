@@ -1,0 +1,14 @@
+package Items;
+
+public class Item {
+	private String itemDescription;
+
+	public Item(String itemDescription) {
+		this.itemDescription = itemDescription;
+	}
+
+	public String getItemDescription() {
+		// TODO Auto-generated method stub
+		return this.itemDescription;
+	}
+}

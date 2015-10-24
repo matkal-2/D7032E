@@ -1,0 +1,33 @@
+package HomeExam;
+
+
+public class GUI{
+	
+
+	public GUI(){
+		
+	}
+	
+
+	
+	public static void drawGUI(){
+		if(The_Game.activeRoom != The_Game.previousRoom){
+			System.out.println(The_Game.activeRoom.roomDescription);
+			
+			if(The_Game.activeRoom.getMoveOptions() != null){
+				System.out.println(The_Game.activeRoom.getMoveOptions());
+			}
+			
+		}
+		if(The_Game.failedAction){
+			System.out.println("You stumble and fall");
+			
+			if(The_Game.activeRoom.getMoveOptions() != null){
+				System.out.println(The_Game.activeRoom.getMoveOptions());
+			}
+			The_Game.failedAction = false;
+		}
+		
+	}
+	
+}

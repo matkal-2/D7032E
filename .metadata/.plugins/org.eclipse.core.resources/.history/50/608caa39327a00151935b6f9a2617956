@@ -1,0 +1,36 @@
+package Enteties;
+
+import java.util.ArrayList;
+
+import Items.Item;
+import Items.Potion;
+import Items.Weapon;
+
+public class Player extends Entity{
+	
+	private ArrayList<Item> inventory;
+	private int maxInventory;
+
+	public Player(int health, int attackDamage, String name) {
+		super(health, attackDamage, name);
+		this.maxInventory = 10;
+		
+	}
+
+	public boolean pickupItem(Item item) {
+		if(item instanceof Weapon && this.weapon == null){
+			this.weapon = item;
+		}
+		else if(item instanceof Potion && this.potion == null){
+			
+		}
+		else{
+			if (inventory.size() < maxInventory){
+				inventory.add(item);
+			}
+		}
+	}
+	
+	
+
+}

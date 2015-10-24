@@ -1,0 +1,11 @@
+package Items;
+
+public class Weapon extends Item{
+	private String weaponType;
+
+	public Weapon(String itemDescription, String weaponType, int weaponDamage) {
+		super(itemDescription);
+	}
+	
+
+}

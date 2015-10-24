@@ -1,0 +1,16 @@
+package Enteties;
+
+public class Player extends Entity{
+	private String name;
+	private arrayList<Item> inventory;
+
+	public Player(int health, int attackDamage, String name) {
+		super(health, attackDamage);
+		this.name = name;
+	}
+	
+	public String getName(){
+		return this.name;
+	}
+
+}

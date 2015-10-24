@@ -1,0 +1,14 @@
+package Enteties;
+
+public class Monster extends Entity{
+	private String taunt;
+	
+	public Monster(int health, int attackDamage, String taunt) {
+		super(health, attackDamage);
+		this.taunt = taunt;
+	}
+
+	public String getTaunt() {
+		return this.taunt;
+	}
+}

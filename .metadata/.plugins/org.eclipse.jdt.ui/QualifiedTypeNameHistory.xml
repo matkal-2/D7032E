@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="Enteties.Player"/>
+<fullyQualifiedTypeName name="Enteties.Monster"/>
+<fullyQualifiedTypeName name="Items.Weapon"/>
+<fullyQualifiedTypeName name="Items.Potion"/>
+<fullyQualifiedTypeName name="HomeExam.GUI"/>
+<fullyQualifiedTypeName name="Items.Key"/>
+<fullyQualifiedTypeName name="HomeExam.The_Game"/>
+<fullyQualifiedTypeName name="Enteties.Boss"/>
+<fullyQualifiedTypeName name="Items.Item"/>
+</qualifiedTypeNameHistroy>

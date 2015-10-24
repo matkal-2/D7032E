@@ -1,0 +1,8 @@
+package Items;
+
+public class Weapon {
+
+	public Weapon() {
+	}
+
+}

@@ -1,0 +1,11 @@
+package Enteties;
+
+public class Boss extends Monster{
+
+	public Boss(int health, int attackDamage, String name, String taunt) {
+		super(health, attackDamage, name, taunt);
+	}
+
+
+
+}

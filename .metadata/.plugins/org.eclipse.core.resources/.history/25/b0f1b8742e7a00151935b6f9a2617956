@@ -1,0 +1,97 @@
+package Levels;
+
+import java.util.ArrayList;
+
+import HomeExam.The_Game;
+import Items.Weapon;
+
+public class Level {
+	ArrayList<Room> rooms = new ArrayList<Room>();
+	public Level() {
+		createRooms();
+		connectRooms();
+		lockDoors();
+		placeItems();
+		spawnMonster();
+	}
+
+	private void createRooms() {
+		String description;
+		
+		// Making room 0
+		description = "Welcome " + The_Game.player.getName() + " to your treasure hunt. Beware of the dragon!\n"
+				+ "You are standing outside a cave. There is a smell of sulfur coming from the opening\n"
+				+ "The cave opening is to your east. Write \"e\" and press [Enter] to enter the cave";
+		rooms.add(new Room(null,null,description));
+		
+		// Making room 1
+		description = "The room is lit by a few candles sitting on a table in front of you.";
+		
+		rooms.add(new Room(null,null,description));
+		
+		// Making room 2
+		description = "You see a dead body on the floor.";
+		
+		rooms.add(new Room(null,null,description));
+		
+		// Making room 3
+		description = "You see an exit to the east, a room to the west and a room to the south";
+		
+		rooms.add(new Room(null,null,description));
+		
+		// Making room 4
+		description = "";
+
+		rooms.add(new Room(null,null,description));
+		
+		// Making room 5
+		description = "";
+		
+		rooms.add(new Room(null,null,description));
+		
+		// Making room 6
+		description = "You drag the gold out the way you came from";
+		
+		rooms.add(new Room(null,null,description));
+	}
+	
+	private void connectRooms() {
+		// Enter cave from outside
+		rooms.get(0).connectRoom(2, rooms.get(1));
+		
+		// room 1, north to room 2 or south to room 5
+		rooms.get(1).connectRoom(1, rooms.get(2));
+		rooms.get(1).connectRoom(3, rooms.get(5));
+		
+		// room 2, south to room 1 or east to room 3
+		rooms.get(2).connectRoom(3, rooms.get(1));
+		rooms.get(2).connectRoom(2, rooms.get(3));
+		
+		// room 3, west to room 2, or south to room 4
+		rooms.get(3).connectRoom(0, rooms.get(2));
+		rooms.get(3).connectRoom(3, rooms.get(4));
+		
+		// room 4, west to room 5 or north to room 3 or east to room 6
+		rooms.get(4).connectRoom(0, rooms.get(5));
+		rooms.get(4).connectRoom(1, rooms.get(3));
+		rooms.get(4).connectRoom(2, rooms.get(6));
+		
+		// room 5, west to room 1 or east to room 4
+		rooms.get(5).connectRoom(0, rooms.get(1));
+		rooms.get(5).connectRoom(2, rooms.get(4));
+		
+	}
+	
+	private void lockDoors() {
+		rooms.get(4).lockDoor(2, 1);
+	}
+	
+	private void placeItems() {
+		rooms.get(2).addItem(new Weapon("You see a sword next to the dead body.","sword",1));
+	}
+	
+	public ArrayList<Room> getRooms(){
+		return this.rooms;
+	}
+
+}

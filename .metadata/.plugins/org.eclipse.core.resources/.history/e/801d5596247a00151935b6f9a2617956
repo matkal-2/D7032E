@@ -1,0 +1,32 @@
+package Enteties;
+
+public class Entity {
+	private int health, maxHealth, attackDamage;
+	public Entity(int health, int attackDamage){
+		this.maxHealth = this.health = health;
+		this.attackDamage = attackDamage;
+	}
+	
+	public boolean takeDamage(int damage){
+		this.health -= damage;
+		if (this.health < 0){
+			this.died();
+			return false;
+		}
+		return true;
+	}
+	
+	public void takeHealing(int healing) {
+		
+		
+	}
+	
+	private void died() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public boolean giveDamage(Entity entetie){
+		return entetie.takeDamage(this.attackDamage);
+	}
+}

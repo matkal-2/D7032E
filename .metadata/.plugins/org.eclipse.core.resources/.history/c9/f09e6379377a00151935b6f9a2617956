@@ -1,0 +1,203 @@
+package Levels;
+
+import Enteties.Entity;
+import Enteties.Monster;
+import HomeExam.GUI;
+import HomeExam.The_Game;
+import HomeExam.UserInput;
+import Items.Item;
+import Items.Weapon;
+
+public class Room {
+	private Room roomToTheWest, roomToTheEast, roomToTheNorth, roomToTheSouth;
+	private int lockWest, lockEast, lockNorth, lockSouth;
+	private Monster monster;
+	private Item item;
+	public String roomDescription;
+	
+	public Room(Monster monster, Item item, String roomMessage){
+		this.item = item;
+		this.monster = monster;
+		this.roomDescription = roomMessage;
+		this.roomToTheWest = this.roomToTheEast = this.roomToTheNorth = this.roomToTheSouth = null;
+		this.lockWest = this.lockEast = this.lockNorth = this.lockSouth = 0;
+	}
+	
+	public void connectRoom(int dir, Room room){
+		switch(dir){
+		case 0:
+			this.roomToTheWest = room;
+			return;
+		case 1:
+			this.roomToTheNorth = room;
+			return;
+		case 2:
+			this.roomToTheEast = room;
+			return;
+		case 3:
+			this.roomToTheSouth = room;
+			return;
+		default:
+			return;
+		}
+	}
+	
+	public void lockDoor(int dir, int keyID){
+		switch(dir){
+		case 0:
+			this.lockWest = keyID;
+			return;
+		case 1:
+			this.lockNorth = keyID;
+			return;
+		case 2:
+			this.lockEast = keyID;
+			return;
+		case 3:
+			this.lockSouth = keyID;
+			return;
+		default:
+			return;
+		}
+	}
+	
+	public Room getRoom(int dir){
+		switch(dir){
+		case 0:
+			return this.roomToTheWest;
+		case 1:
+			return this.roomToTheNorth;
+		case 2:
+			return this.roomToTheEast;
+		case 3:
+			return this.roomToTheSouth;
+		default:
+			return null;
+		}
+	}
+
+	public void playerPresent() throws Exception {
+		
+		String choice = UserInput.userInput();
+		switch(choice){
+		case "w":
+			if(this.roomToTheWest != null && this.lockWest == 0)The_Game.move(this.roomToTheWest);
+			break;
+		case "n":
+			if(this.roomToTheNorth != null && this.lockNorth == 0)The_Game.move(this.roomToTheNorth);
+			break;
+		case "e":
+			if(this.roomToTheEast != null && this.lockEast == 0)The_Game.move(this.roomToTheEast);
+			break;
+		case "s":
+			if(this.roomToTheSouth != null && this.lockSouth == 0)The_Game.move(this.roomToTheSouth);
+			break;
+		case "p":
+			if(this.item != null){
+				if(The_Game.pickUpItem(this.item)){
+					this.item = null;
+				}
+			}
+			The_Game.move(this);
+			break;
+		default:
+			The_Game.failedAction = true;
+			The_Game.move(this);
+			break;
+		}
+			
+	}
+
+	// Returns a string describing the actions a player can take in this room
+	public String getOptions() {
+		String directionOption = "There is ";
+		boolean firstOption = true;
+		
+		if (this.roomToTheWest != null){
+			if(this.lockWest == 0){
+				directionOption += " a way to the west [w]";
+			}
+			else{
+				directionOption += " a locked door the the west";
+			}
+		}
+		if (this.roomToTheNorth != null){
+			if(this.lockNorth == 0){
+				directionOption += " a way to the north [n]";
+			}
+			else{
+				directionOption += " a locked door the the north";
+			}
+		}
+		if (this.roomToTheEast != null){
+			if(this.lockEast == 0){
+				directionOption += " a way to the east [e]";
+			}
+			else{
+				directionOption += " a locked door the the east";
+			}
+		}
+		if (this.roomToTheSouth != null){
+			if(this.lockSouth == 0){
+				directionOption += " a way to the south [s]";
+			}
+			else{
+				directionOption += " a locked door the the south";
+			}
+		}
+		if(this.item != null){
+			directionOption += " a " + this.item.getName() + " to pick up [p]";
+		}
+		if(directionOption == "There is "){
+			return "";
+		}
+		return directionOption+".";
+	}
+
+	public void addItem(Item item) {
+		this.item = item;
+		
+	}
+
+	public boolean hasMonster() {
+		if(this.monster != null){
+			return true;
+		}
+		return false;
+	}
+
+	public Monster getMonster() {
+		return this.monster;
+	}
+
+	public void spawnMonster(Monster monster) {
+		this.monster = monster;
+		
+	}
+
+	public boolean hasItem() {
+		if(this.item != null){
+			return true;
+		}
+		return false;
+	}
+
+	public Item getItem() {
+		return this.item;
+	}
+
+	public int getLock(int dir) {
+		switch(dir){
+		case 0:
+			return this.lockWest;
+		case 1:
+			return this.lockNorth;
+		case 2:
+			return this.lockEast;
+		case 3:
+			return this.lockSouth;
+		default:
+			return 0;
+		}
+	}
+}

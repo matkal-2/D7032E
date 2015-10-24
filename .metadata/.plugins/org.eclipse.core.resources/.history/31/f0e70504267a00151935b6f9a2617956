@@ -1,0 +1,8 @@
+package Items;
+
+public class Weapon {
+
+	public Weapon(String itemDescription, int i, String type) {
+	}
+
+}
