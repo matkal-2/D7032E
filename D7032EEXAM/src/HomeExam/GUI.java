@@ -41,14 +41,14 @@ public class GUI{
 	}
 
 
-
+	// alerts player of something
 	public static void alert(String alert) {
 		System.out.println(alert);
 		
 	}
 
-	public static void ending(boolean won) {
-		if(won){
+	public static void ending(int treasuers) {
+		if(treasuers >= The_Game.MIN_TREASURE_WIN_CONDITION){
 			System.out.println(	"                            _.--.\n"+
 								"                        _.-'_:-'||\n"+
 								"                    _.-'_.-::::'||\n"+

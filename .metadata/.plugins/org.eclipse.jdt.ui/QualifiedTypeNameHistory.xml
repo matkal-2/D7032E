@@ -6,7 +6,10 @@
 <fullyQualifiedTypeName name="Items.Potion"/>
 <fullyQualifiedTypeName name="HomeExam.GUI"/>
 <fullyQualifiedTypeName name="Items.Key"/>
-<fullyQualifiedTypeName name="HomeExam.The_Game"/>
 <fullyQualifiedTypeName name="Enteties.Boss"/>
 <fullyQualifiedTypeName name="Items.Item"/>
+<fullyQualifiedTypeName name="HomeExam.The_Game"/>
+<fullyQualifiedTypeName name="java.awt.event.KeyEvent"/>
+<fullyQualifiedTypeName name="java.io.ByteArrayOutputStream"/>
+<fullyQualifiedTypeName name="java.io.PrintStream"/>
 </qualifiedTypeNameHistroy>

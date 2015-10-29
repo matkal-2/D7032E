@@ -1,7 +1,6 @@
 package HomeExam;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Application {
@@ -282,6 +281,7 @@ public class Application {
 			"       Write your name and press [Enter] to start a new game..."
 		);
 		String name = bufferedReader.readLine();
+		@SuppressWarnings("unused")
 		Application adventure = new Application(name);
 	}
 }

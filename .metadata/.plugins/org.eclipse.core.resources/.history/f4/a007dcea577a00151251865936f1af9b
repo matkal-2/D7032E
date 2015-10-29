@@ -1,0 +1,81 @@
+package HomeExam;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class UserInput {
+	static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+	public static String userInput() throws Exception {
+		return bufferedReader.readLine();
+	}
+	
+	public static void awaitAction() throws Exception{
+		String choice = bufferedReader.readLine();
+		switch(choice){
+		// try walk west
+		case "w":
+			tryWalk(0);
+			break;
+			
+		// try walk north
+		case "n":
+			tryWalk(1);
+			break;
+			
+		// try walk east
+		case "e":
+			tryWalk(2);
+			break;
+			
+		// try walk south
+		case "s":
+			tryWalk(3);
+			break;
+			
+		// try pick up item
+		case "p":
+			if(The_Game.activeRoom.getItem() != null){
+				if(The_Game.player.pickUpItem(The_Game.activeRoom.getItem())){
+					The_Game.activeRoom.removeItem();
+				}
+			}
+			The_Game.move(The_Game.activeRoom);
+			break;
+			
+		// try drink potion
+		case "d":
+			if(The_Game.player.hasPotion()){
+				if(The_Game.player.missingHealth()){
+					The_Game.player.drink();
+				}
+			}
+			break;
+		default:
+			The_Game.failedAction = true;
+			The_Game.move(The_Game.activeRoom);
+			break;
+		}
+	}
+
+	private static void tryWalk(int dir) {
+		if(The_Game.activeRoom.getRoom(dir) != null){
+			if(The_Game.activeRoom.getLock(dir) == 0)The_Game.move(The_Game.activeRoom.getRoom(dir));
+			else{
+				if(The_Game.player.getKey() != null && The_Game.activeRoom.getLock(1) == The_Game.player.getKey().getKeyID()){
+					The_Game.activeRoom.lockDoor(dir, 0);
+					The_Game.move(The_Game.activeRoom.getRoom(dir));
+				}
+				else{
+					The_Game.failedAction = true;
+					The_Game.move(The_Game.activeRoom);
+				}
+			}
+		}
+		else{
+			The_Game.failedAction = true;
+			The_Game.move(The_Game.activeRoom);
+		}
+	}
+
+}

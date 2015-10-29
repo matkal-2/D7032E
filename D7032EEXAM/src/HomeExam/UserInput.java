@@ -1,7 +1,6 @@
 package HomeExam;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class UserInput {
@@ -16,60 +15,28 @@ public class UserInput {
 		switch(choice){
 		// try walk west
 		case "w":
-			if(The_Game.activeRoom.getRoom(0) != null){
-				if(The_Game.activeRoom.getLock(0) == 0)The_Game.move(The_Game.activeRoom.getRoom(0));
-				else{
-					if(The_Game.player.getKey() != null && The_Game.activeRoom.getLock(0) == The_Game.player.getKey().getKeyID()){
-						The_Game.activeRoom.lockDoor(0, 0);
-						The_Game.move(The_Game.activeRoom.getRoom(0));
-					}
-				}
-			}
+			tryWalk(0);
 			break;
 			
 		// try walk north
 		case "n":
-			if(The_Game.activeRoom.getRoom(1) != null){
-				if(The_Game.activeRoom.getLock(1) == 0)The_Game.move(The_Game.activeRoom.getRoom(1));
-				else{
-					if(The_Game.player.getKey() != null && The_Game.activeRoom.getLock(1) == The_Game.player.getKey().getKeyID()){
-						The_Game.activeRoom.lockDoor(1, 0);
-						The_Game.move(The_Game.activeRoom.getRoom(1));
-					}
-				}
-			}
+			tryWalk(1);
 			break;
 			
 		// try walk east
 		case "e":
-			if(The_Game.activeRoom.getRoom(2) != null){
-				if(The_Game.activeRoom.getLock(2) == 0)The_Game.move(The_Game.activeRoom.getRoom(2));
-				else{
-					if(The_Game.player.getKey() != null && The_Game.activeRoom.getLock(2) == The_Game.player.getKey().getKeyID()){
-						The_Game.activeRoom.lockDoor(2,0);
-						The_Game.move(The_Game.activeRoom.getRoom(2));
-					}
-				}
-			}
+			tryWalk(2);
 			break;
 			
 		// try walk south
 		case "s":
-			if(The_Game.activeRoom.getRoom(3) != null){
-				if(The_Game.activeRoom.getLock(3) == 0)The_Game.move(The_Game.activeRoom.getRoom(3));
-				else{
-					if(The_Game.player.getKey() != null && The_Game.activeRoom.getLock(3) == The_Game.player.getKey().getKeyID()){
-						The_Game.activeRoom.lockDoor(3, 0);
-						The_Game.move(The_Game.activeRoom.getRoom(3));
-					}
-				}
-			}
+			tryWalk(3);
 			break;
 			
 		// try pick up item
 		case "p":
 			if(The_Game.activeRoom.getItem() != null){
-				if(The_Game.pickUpItem(The_Game.activeRoom.getItem())){
+				if(The_Game.player.pickUpItem(The_Game.activeRoom.getItem())){
 					The_Game.activeRoom.removeItem();
 				}
 			}
@@ -88,6 +55,26 @@ public class UserInput {
 			The_Game.failedAction = true;
 			The_Game.move(The_Game.activeRoom);
 			break;
+		}
+	}
+
+	private static void tryWalk(int dir) {
+		if(The_Game.activeRoom.getRoom(dir) != null){
+			if(The_Game.activeRoom.getLock(dir) == 0)The_Game.move(The_Game.activeRoom.getRoom(dir));
+			else{
+				if(The_Game.player.getKey() != null && The_Game.activeRoom.getLock(1) == The_Game.player.getKey().getKeyID()){
+					The_Game.activeRoom.lockUnlockDoor(dir, 0);
+					The_Game.move(The_Game.activeRoom.getRoom(dir));
+				}
+				else{
+					The_Game.failedAction = true;
+					The_Game.move(The_Game.activeRoom);
+				}
+			}
+		}
+		else{
+			The_Game.failedAction = true;
+			The_Game.move(The_Game.activeRoom);
 		}
 	}
 

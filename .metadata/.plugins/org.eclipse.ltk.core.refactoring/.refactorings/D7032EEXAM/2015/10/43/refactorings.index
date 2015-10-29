@@ -5,3 +5,8 @@
 1445675865048	Rename method 'drawGUI'
 1445678126251	Rename method 'getMoveOptions'
 1445687823352	Delete element
+1445692784924	Rename field 'maxTreasures'
+1445692874154	Rename method 'empty'
+1445692970537	Rename method 'pickupItem'
+1445694975307	Rename method 'walk'
+1445695372577	Rename method 'lockDoor'

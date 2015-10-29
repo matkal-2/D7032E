@@ -1,0 +1,50 @@
+package gameRunThrough;
+
+import static org.junit.Assert.*;
+
+import java.awt.Component;
+import java.awt.List;
+import java.awt.event.KeyEvent;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import HomeExam.The_Game;
+
+public class GameRun {
+
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		String[] string = null;
+		The_Game.main(string);
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void test() {
+		/*
+		Component instance = terminal;
+		KeyEvent key = new KeyEvent(instance, KeyEvent.KEY_PRESSED, System.currentTimeMillis(), 0,  KeyEvent.VK_ENTER,'Z');
+	    instance.getKeyListeners()[0].keyPressed(key);
+	    */
+		final ByteArrayOutputStream myOut = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(myOut));
+	}
+
+}

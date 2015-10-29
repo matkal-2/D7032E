@@ -16,7 +16,7 @@ public class Potion extends Item {
 		this.usages -= 1;
 	}
 
-	public boolean empty() {
+	public boolean isEmpty() {
 		if(this.usages < 1){
 			return true;
 		}

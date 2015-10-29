@@ -1,7 +1,6 @@
 package Enteties;
 
 import HomeExam.GUI;
-import Items.Potion;
 import Items.Weapon;
 
 public class Entity {

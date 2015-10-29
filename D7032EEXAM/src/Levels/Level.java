@@ -101,11 +101,11 @@ public class Level {
 	}
 	
 	private void lockDoors() {
-		rooms.get(4).lockDoor(2, 1);
+		rooms.get(4).lockUnlockDoor(2, 1);
 	}
 	
 	private void placeItems() {
-		rooms.get(2).addItem(new Weapon("Sword", "You see a sword next to the dead body.","sword",1));
+		rooms.get(2).addItem(new Weapon("Sword", "You see a sword next to the dead body.",1));
 		rooms.get(4).addItem(new Potion("Health Potion", "You see a health potion on the floor.", 1,10));
 		rooms.get(5).addItem(new Key("Key", "You see a key laying on the floor",1));
 		rooms.get(6).getMonster().addLoot(new Item("Treasure",""));

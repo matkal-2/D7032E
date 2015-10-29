@@ -1,0 +1,89 @@
+package HomeExam;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+public class UserInput {
+	static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+	public static String userInput() throws Exception {
+		return bufferedReader.readLine();
+	}
+	
+	public static void awaitAction() throws Exception{
+		String choice = bufferedReader.readLine();
+		switch(choice){
+		// try walk west
+		case "w":
+			if(The_Game.activeRoom.getRoom(0) != null){
+				if(The_Game.activeRoom.getLock(0) == 0)The_Game.move(The_Game.activeRoom.getRoom(0));
+				else{
+					if(The_Game.player.getKey() != null && The_Game.activeRoom.getLock(0) == The_Game.player.getKey().getKeyID()){
+						The_Game.activeRoom.lockDoor(0, 0);
+						The_Game.move(The_Game.activeRoom.getRoom(0));
+					}
+				}
+			}
+			break;
+			
+		// try walk north
+		case "n":
+			walk(1);
+			break;
+			
+		// try walk east
+		case "e":
+			if(The_Game.activeRoom.getRoom(2) != null){
+				if(The_Game.activeRoom.getLock(2) == 0)The_Game.move(The_Game.activeRoom.getRoom(2));
+				else{
+					if(The_Game.player.getKey() != null && The_Game.activeRoom.getLock(2) == The_Game.player.getKey().getKeyID()){
+						The_Game.activeRoom.lockDoor(2,0);
+						The_Game.move(The_Game.activeRoom.getRoom(2));
+					}
+				}
+			}
+			break;
+			
+		// try walk south
+		case "s":
+			if(The_Game.activeRoom.getRoom(3) != null){
+				if(The_Game.activeRoom.getLock(3) == 0)The_Game.move(The_Game.activeRoom.getRoom(3));
+				else{
+					if(The_Game.player.getKey() != null && The_Game.activeRoom.getLock(3) == The_Game.player.getKey().getKeyID()){
+						The_Game.activeRoom.lockDoor(3, 0);
+						The_Game.move(The_Game.activeRoom.getRoom(3));
+					}
+				}
+			}
+			break;
+			
+		// try pick up item
+		case "p":
+			if(The_Game.activeRoom.getItem() != null){
+				if(The_Game.player.pickUpItem(The_Game.activeRoom.getItem())){
+					The_Game.activeRoom.removeItem();
+				}
+			}
+			The_Game.move(The_Game.activeRoom);
+			break;
+			
+		// try drink potion
+		case "d":
+			if(The_Game.player.hasPotion()){
+				if(The_Game.player.missingHealth()){
+					The_Game.player.drink();
+				}
+			}
+			break;
+		default:
+			The_Game.failedAction = true;
+			The_Game.move(The_Game.activeRoom);
+			break;
+		}
+	}
+
+	private static void walk(int i) {
+		
+	}
+
+}

@@ -1,12 +1,8 @@
 package Levels;
 
-import Enteties.Entity;
 import Enteties.Monster;
-import HomeExam.GUI;
 import HomeExam.The_Game;
-import HomeExam.UserInput;
 import Items.Item;
-import Items.Weapon;
 
 public class Room {
 	private Room roomToTheWest, roomToTheEast, roomToTheNorth, roomToTheSouth;
@@ -42,7 +38,8 @@ public class Room {
 		}
 	}
 	
-	public void lockDoor(int dir, int keyID){
+	// unlocked is 0 locked is equal to or greater than 1
+	public void lockUnlockDoor(int dir, int keyID){
 		switch(dir){
 		case 0:
 			this.lockWest = keyID;
@@ -78,9 +75,7 @@ public class Room {
 
 	// Returns a string describing the actions a player can take in this room
 	public String getOptions() {
-		String directionOption = "There is ";
-		boolean firstOption = true;
-		
+		String directionOption = "There is ";		
 		if (this.roomToTheWest != null){
 			if(this.lockWest == 0){
 				directionOption += ", a way to the west [w]";

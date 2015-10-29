@@ -7,6 +7,7 @@ import Items.Item;
 import Items.Key;
 import Items.Potion;
 import Items.Weapon;
+import Levels.Room;
 
 public class Player extends Entity{
 	
@@ -21,7 +22,7 @@ public class Player extends Entity{
 		inventory = new ArrayList<Item>();
 	}
 
-	public boolean pickupItem(Item item) {
+	public boolean pickUpItem(Item item) {
 		if(item instanceof Weapon && this.weapon == null){
 			this.weapon = (Weapon) item;
 			return true;
@@ -64,7 +65,7 @@ public class Player extends Entity{
 	public void drink() {
 		this.potion.drink(this);
 		GUI.alert(this.name +" used " + this.potion.getName());
-		if(this.potion.empty()){
+		if(this.potion.isEmpty()){
 			this.potion = null;
 		}
 		
